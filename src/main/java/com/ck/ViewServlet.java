@@ -37,14 +37,18 @@ public class ViewServlet extends HttpServlet {
 		out.println("<center><h1>Student List</h1><center>");
 		out.println("<center><h2><a href='index.html'>Register Student</a></h2><center>");
 		out.println("<center><h4><a href='LogOut'>LogOut</a></h4><center>");
+		
 		List<Student> list= StudentDAO.getAllStudents();
-		out.print("<table border='2' width='100%'>");
-		out.print("<tr><th>Id</th><th>Name</th><th>Password</th><th>Subject</th><th>edit</th><th>Delete</th></tr>");
+		
+		out.print("<table border='2' width='100%'");
+		out.print("<tr><th>Id</th><th>Name</th><th>Password</th><th>Subject</th><th>Edit</th><th>Delete</th></tr>");
 		for(Student e : list) {
 			out.print("<tr><td>"+ e.getId()+"</td><td>"+ e.getName()+"</td><td>"+ e.getPassword()+"</td><td>"
-		+ e.getSubject()+"</td><td><a href='EditServletForm?id=" + e.getId() + "'>edit</a></td><td><a href='DeleteServlet?id=" + e.getId() +"'>delete</a></td></tr>");
+		+ e.getSubject()+"</td><td><a href='EditServletForm?id=" + e.getId() 
+		+ "'>edit</a></td><td><a href='DeleteServlet?id=" + e.getId() +"'>delete</a></td></tr>");
 		}
 		out.print("</table>");
+		
 		out.close();
 	}
 

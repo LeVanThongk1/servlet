@@ -61,11 +61,11 @@ public class StudentDAO {
 		int status = 0;
 		try {
 			Connection con = StudentDAO.getConnection();
-			PreparedStatement ps = con.prepareStatement("update user1 set name=?, password=?, subject=?,where id=?");
+			PreparedStatement ps = con.prepareStatement("update user1 set name=?,password=?,subject=? where id=?");
 			ps.setInt(4, e.getId());
 			ps.setString(1, e.getName());
-			ps.setString(1, e.getPassword());
-			ps.setString(1, e.getSubject());
+			ps.setString(2, e.getPassword());
+			ps.setString(3, e.getSubject());
 			status = ps.executeUpdate();
 			con.close();
 
@@ -83,8 +83,8 @@ public class StudentDAO {
 			status = ps.executeUpdate();
 			con.close();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return status;
 	}

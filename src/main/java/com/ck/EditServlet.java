@@ -47,7 +47,7 @@ public class EditServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		
 		Student e = new Student();
-		e.setId(id);
+		e.setId(id);;
 		e.setName(name);
 		e.setSubject(subject);
 		e.setPassword(password);
@@ -57,7 +57,7 @@ public class EditServlet extends HttpServlet {
 			out.print("<h3 style='color:green'><br>Update successfully!</h3>");
 			request.getRequestDispatcher("ViewServlet").include(request, response);
 		} else {
-			out.println("<h3 style='color:red'>Sorry</h3>");
+			out.println("<h3 style='color:red'>Sorry! check code</h3>");
 		}
 		out.close();
 	}

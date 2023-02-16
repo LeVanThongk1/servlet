@@ -55,9 +55,10 @@ public class UserValidation extends HttpServlet {
 		try {
 			response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver");
-			con= (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/text5?useSSL=false", "root","12345" );
-			String q = "select * from user1 where NAME=(?) and PASSWORK=(?)";
+			con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/text5?useSSL=false", "root","12345" );
+			String q = "select * from user1 where NAME=(?) and PASSWORD=(?)";
 			PreparedStatement ps = con.prepareStatement(q);
+			 
 			ps.setString(1, name);
 			ps.setString(2, password);	
 			ResultSet rs= ps.executeQuery();
@@ -67,23 +68,22 @@ public class UserValidation extends HttpServlet {
 				
 				if (name.equalsIgnoreCase(name) && password.equalsIgnoreCase(password));
 				{
-					pw.print("Login user by id :"+ name);
+					pw.print("Login by user  id :"+ name);
 					HttpSession session =  request.getSession();
-					if (session !=null) {
+					if (session != null) {
 						session.setAttribute("name", name);
-						RequestDispatcher rd = request.getRequestDispatcher("ViewServler");
+						RequestDispatcher rd = request.getRequestDispatcher("ViewServlet");
 						rd.include(request, response);
 					}
 				}
-				}else {
+				} else {
 					pw.print("<center><h3 style='color:green'>check either userName of password ! Thank </h3></center>");
-					RequestDispatcher rd = request.getRequestDispatcher("LoginForm.html");
+					RequestDispatcher rd = request.getRequestDispatcher("ViewServlet");
 					rd.include(request, response);
 				}
 			con.close();
 			
 		} catch (Exception ex) {
-			// TODO: handle exception
 			pw.print(ex);
 			pw.close();
 }
